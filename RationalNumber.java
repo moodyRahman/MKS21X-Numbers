@@ -3,4 +3,8 @@ public class RationalNumber extends RealNumber{
     super(input);
   }
 
+  RationalNumber(int num, int den){
+    super((num+0.0)/(den+0.0));
+  }
+
 }
