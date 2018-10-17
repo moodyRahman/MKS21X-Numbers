@@ -9,36 +9,39 @@ public class RationalNumber extends RealNumber
   */
   public RationalNumber(int nume, int deno){
     super(0.0);//this value is ignored!
+    this.numerator = nume;
+    this.denominator = deno;
   }
 
   public double getValue(){
-    return 0.0;
+    return (double)numerator/ denominator;
   }
 
   /**
   *@return the numerator
   */
   public int getNumerator(){
-    return 0;
+    return this.numerator;
   }
   /**
   *@return the denominator
   */
   public int getDenominator(){
-    return 0;
+    return this.denominator;
   }
   /**
   *@return a new RationalNumber that has the same numerator
   *and denominator as this RationalNumber but reversed.
   */
   public RationalNumber reciprocal(){
-   return null;
+    RationalNumber output = new RationalNumber(this.denominator, this.numerator);
+   return output;
  }
  /**
  *@return true when the RationalNumbers have the same numerators and denominators, false otherwise.
  */
  public boolean equals(RationalNumber other){
-   return false;
+   return (this.numerator == other.getNumerator()) && (this.denominator == other.getDenominator());
  }
 
 
@@ -46,7 +49,7 @@ public class RationalNumber extends RealNumber
  *@return the value expressed as "3/4" or "8/3"
  */
  public String toString(){
-   return "0";
+   return this.numerator + "/" + this.denominator;
  }
 
  /**Calculate the GCD of two integers.
@@ -57,7 +60,10 @@ public class RationalNumber extends RealNumber
  private static int gcd(int a, int b){
    /*use euclids method or a better one*/
    http://sites.math.rutgers.edu/~greenfie/gs2004/euclid.html
-   return 0;
+   if (a == 0) {
+            return b;
+        }
+        return gcd(a, b % a);
  }
  /**
 *Divide the numerator and denominator by the GCD
@@ -65,7 +71,9 @@ public class RationalNumber extends RealNumber
 *reduced after construction.
 */
 private void reduce(){
-
+  int common = gcd(this.numerator, this.denominator);
+  this.numerator = this.numerator/common;
+  this.denominator = this.denominator/common;
 }
 /******************Operations Return a new RationalNumber!!!!****************/
 /**
