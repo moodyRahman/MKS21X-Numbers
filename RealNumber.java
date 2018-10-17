@@ -1,23 +1,46 @@
 public class RealNumber{
+  private double value;
 
-  private double number;
-
-  public RealNumber(double input){
-    number = input;
+  public RealNumber(double v){
+    value = v;
   }
+
+  /*
+  *Return the sum of this and the other
+  */
+  public double add(RealNumber other){
+     //other can be ANY RealNumber, including a RationalNumber
+     //or other subclasses of RealNumber (that aren't written yet)
+     return 0;
+  }
+
+  /*
+  *Return the product of this and the other
+  */
+  public double multiply(RealNumber other){
+    return 0;
+  }
+
+  /*
+  *Return the this divided by the other
+  */
+  public double divide(RealNumber other){
+    return 0;
+  }
+
+  /*
+  *Return the this minus the other
+  */
+  public double subtract(RealNumber other){
+    return 0;
+  }
+
 
   public double getValue(){
-    return number;
+    return value;
   }
 
-  public double truncate(){
-    return 4.56;
-  }
-
-  public boolean greaterThan(RealNumber inp){
-    return this.number > inp.getValue();
-  }
-  public static boolean greaterThan(RealNumber inp1, RealNumber inp2){
-    return inp1.getValue() > inp2.getValue();
+  public String toString(){
+    return ""+value;
   }
 }
