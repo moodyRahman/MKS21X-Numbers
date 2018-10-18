@@ -81,7 +81,7 @@ public class Driveralt {
     System.out.println(a.getDenominator());
     System.out.println("----------");
 
-    // RationalNumber opeations
+    // RationalNumber operations
     System.out.print("a + c (should print 1): ");
     System.out.println(a.add(c));
     System.out.print("a - c (should print 0): ");

@@ -11,6 +11,11 @@ public class RationalNumber extends RealNumber
     super(0.0);//this value is ignored!
     this.numerator = nume;
     this.denominator = deno;
+
+    if(deno == 0){
+      this.numerator = 0;
+      this.denominator = nume;
+    }
   }
 
   public double getValue(){
@@ -60,10 +65,14 @@ public class RationalNumber extends RealNumber
  private static int gcd(int a, int b){
    /*use euclids method or a better one*/
    http://sites.math.rutgers.edu/~greenfie/gs2004/euclid.html
-   if (a == 0) {
-            return b;
+   if (b == 0) {
+            return a;
         }
-        return gcd(a, b % a);
+        return gcd(b, a % b);
+ }
+
+ private static int lcm(int a, int b){
+   return (a*b) / (gcd(a, b));
  }
  /**
 *Divide the numerator and denominator by the GCD
@@ -75,26 +84,34 @@ private void reduce(){
   this.numerator = this.numerator/common;
   this.denominator = this.denominator/common;
 }
+
 /******************Operations Return a new RationalNumber!!!!****************/
 /**
 *Return a new RationalNumber that is the product of this and the other
 */
 public RationalNumber multiply(RationalNumber other){
-  return null;
+  return new RationalNumber(this.numerator * other.getNumerator(),
+                            this.denominator * other.getDenominator());
 }
 
 /**
 *Return a new RationalNumber that is the this divided by the other
 */
 public RationalNumber divide(RationalNumber other){
-  return null;
+  return new RationalNumber(this.numerator * other.getDenominator(),
+                            this.denominator * other.getNumerator());
 }
 
 /**
 *Return a new RationalNumber that is the sum of this and the other
 */
 public RationalNumber add(RationalNumber other){
-  return null;
+  int low = lcm(this.numerator, other.getNumerator());
+  int factthis = low / this.denominator;
+  int factother = low / other.getDenominator();
+  RationalNumber expandthis = new RationalNumber(this.numerator*factthis, this.denominator*factthis);
+  RationalNumber expandother = new RationalNumber(other.getNumerator()*factother, other.getDenominator()*factother);
+  return new RationalNumber(expandthis.getNumerator() + expandother.getNumerator(), expandthis.getDenominator());
 }
 /**
 *Return a new RationalNumber that this minus the other
